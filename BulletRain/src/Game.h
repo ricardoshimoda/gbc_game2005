@@ -4,14 +4,17 @@
 
 // Core Libraries
 #include <iostream>
+#include <vector>
 
 #include <SDL.h>
 #include <SDL_image.h>
 
 #include "TextureManager.h"
+#include "CollisionManager.h"
+
 #include "Player.h"
-#include "Island.h"
-#include "ColManager.h"
+#include "DeepSpace.h"
+#include "Bullet.h"
 
 class Game
 {
@@ -61,9 +64,10 @@ private:
 
 	static Game* s_pInstance;
 
+	// GameObjects
 	Player* m_pPlayer;
-
-	Island* m_pIsland;
+	DeepSpace* m_pDeepSpace;
+	std::vector<Bullet*>m_pBullets;
 
 	void createGameObjects();
 

@@ -4,9 +4,6 @@
 
 #include <math.h>
 #include <Windows.h>
-#include <stdio.h>      /* printf, scanf, puts, NULL */
-#include <stdlib.h>     /* srand, rand */
-#include <time.h>       /* time */
 
 //#include <map> // for std::map
 //#include <memory> // for std::shared_ptr
@@ -29,7 +26,7 @@ const int DELAY_TIME = 1000.0f / FPS;
 
 int main(int argc, char * args[])
 {
-	srand(time(NULL));
+
 	Uint32 frameStart, frameTime;
 
 
@@ -38,11 +35,10 @@ int main(int argc, char * args[])
 	freopen("CON", "w", stdout);
 
 
-	TheGame::Instance()->init("Hello World", 100, 100, 640, 480, false);
+	TheGame::Instance()->init("Bullet Rain - XWing under attack", 100, 100, 640, 480, false);
 
 	while (TheGame::Instance()->running())
 	{
-
 		frameStart = SDL_GetTicks();
 
 		TheGame::Instance()->handleEvents();

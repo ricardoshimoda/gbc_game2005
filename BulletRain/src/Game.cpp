@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "ColManager.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -24,7 +23,11 @@ Game::~Game()
 void Game::createGameObjects()
 {
 	m_pPlayer = new Player();
-	m_pIsland = new Island();
+	m_pDeepSpace = new DeepSpace();
+
+	for (size_t i = 0; i < 10; i++) {
+		m_pBullets.push_back(new Bullet());
+	}
 }
 
 bool Game::init(const char* title, int xpos, int ypos, int height, int width, bool fullscreen)
@@ -85,18 +88,29 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, bo
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw colour
-
-	m_pIsland->draw();
+	m_pDeepSpace->draw();
 	m_pPlayer->draw();
+	for (Bullet* bullet : m_pBullets) {
+		bullet->draw();
+	}
+	
 
 	SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
 
 void Game::update()
 {
-	m_pIsland->update();
+	m_pDeepSpace->update();
 	m_pPlayer->update();
-	ColManager::check(m_pPlayer, m_pIsland);
+	for (Bullet* bullet : m_pBullets) {
+		bullet->update();
+	}
+
+	for (Bullet* bullet : m_pBullets) {
+		Collision::squaredRadiusCheck(m_pPlayer, bullet);
+	}
+
+	//
 }
 
 void Game::clean()

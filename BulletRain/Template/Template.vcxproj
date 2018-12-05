@@ -157,25 +157,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\ColManager.cpp" />
+    <ClCompile Include="..\src\Bullet.cpp" />
+    <ClCompile Include="..\src\CollisionManager.cpp" />
+    <ClCompile Include="..\src\DeepSpace.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\GameObject.cpp" />
-    <ClCompile Include="..\src\Island.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
     <ClCompile Include="..\src\SoundManager.cpp" />
     <ClCompile Include="..\src\TextureManager.cpp" />
-    <ClCompile Include="CollisionManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\ColManager.h" />
+    <ClInclude Include="..\src\Bullet.h" />
+    <ClInclude Include="..\src\CollisionManager.h" />
+    <ClInclude Include="..\src\DeepSpace.h" />
     <ClInclude Include="..\src\Game.h" />
     <ClInclude Include="..\src\GameObject.h" />
-    <ClInclude Include="..\src\Island.h" />
     <ClInclude Include="..\src\Player.h" />
     <ClInclude Include="..\src\SoundManager.h" />
     <ClInclude Include="..\src\TextureManager.h" />
-    <ClInclude Include="CollisionManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
