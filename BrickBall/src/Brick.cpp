@@ -54,7 +54,7 @@ void Brick::_move()
 	velocity.y = mouseVector.y - previousPosition.y;
 	setVelocity(velocity);
 
-	//std::cout << "Velocity X:" << velocity.x << " | Velocity Y:" << velocity.y << std::endl;
+	std::cout << "Velocity X:" << velocity.x << " | Velocity Y:" << velocity.y << std::endl;
 
 	previousPosition = glm::vec2(mouseVector.x, mouseVector.y);
 }
