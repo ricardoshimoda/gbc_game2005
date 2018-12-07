@@ -4,14 +4,22 @@
 
 // Core Libraries
 #include <iostream>
+#include <vector>
 
 #include <SDL.h>
 #include <SDL_image.h>
 
 #include "TextureManager.h"
+#include "CollisionManager.h"
+
 #include "Player.h"
-#include "Island.h"
-#include "ColManager.h"
+#include "Pool.h"
+#include "Brick.h"
+#include "Ball.h"
+
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
+const float BOUNCE_FACTOR = -0.80f; // Perfectly elastic collision
 
 class Game
 {
@@ -61,9 +69,11 @@ private:
 
 	static Game* s_pInstance;
 
-	Player* m_pPlayer;
-
-	Island* m_pIsland;
+	// GameObjects
+	//Player* m_pPlayer;
+	Pool* m_pPool;
+	Ball* m_pBall;
+	Brick* m_pBrick;
 
 	void createGameObjects();
 

@@ -38,6 +38,8 @@ public:
 
 	glm::vec2 getTextureSize(std::string id);
 
+	void setAlpha(std::string id, Uint8 newAlpha);
+
 private:
 
 	TextureManager();

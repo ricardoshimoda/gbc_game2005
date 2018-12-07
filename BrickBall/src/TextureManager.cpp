@@ -127,3 +127,9 @@ glm::vec2 TextureManager::getTextureSize(std::string id)
 
 	return size;
 }
+
+void TextureManager::setAlpha(std::string id, Uint8 newAlpha)
+{
+	SDL_Texture* pTexture = m_textureMap[id];
+	SDL_SetTextureAlphaMod(pTexture, newAlpha);
+}

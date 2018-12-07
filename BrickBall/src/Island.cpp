@@ -1,17 +1,22 @@
 #include "Island.h"
 #include "Game.h"
-#include <stdlib.h>
 
 Island::Island()
 {
-	TheTextureManager::Instance()->load("../../Assets/textures/island.png", "island", TheGame::Instance()->getRenderer());
+	TheTextureManager::Instance()->load("../../Assets/textures/bullet.png",
+		"island", TheGame::Instance()->getRenderer());
+
 	glm::vec2 size = TheTextureManager::Instance()->getTextureSize("island");
 	setWidth(size.x);
 	setHeight(size.y);
 	setVelocity(glm::vec2(0, 5));
 	_reset();
-	setName("Island");
 	setIsColliding(false);
+	setType(GameObjectType::ISLAND);
+
+	TheSoundManager::Instance()->load("../../Assets/audio/Explosion.wav", "money", sound_type::SOUND_SFX);
+
+
 }
 
 Island::~Island()
@@ -20,7 +25,10 @@ Island::~Island()
 
 void Island::draw()
 {
-	TheTextureManager::Instance()->draw("island", getPosition().x, getPosition().y, TheGame::Instance()->getRenderer(), true);
+	int xComponent = getPosition().x;
+	int yComponent = getPosition().y;
+	TheTextureManager::Instance()->draw("island", xComponent, yComponent,
+		TheGame::Instance()->getRenderer(), true);
 }
 
 void Island::update()
@@ -35,25 +43,23 @@ void Island::clean()
 
 void Island::_move()
 {
-	glm::vec2 currentPosition = getPosition();
-	glm::vec2 currentVelocity = getVelocity();
-	setPosition(glm::vec2(currentPosition.x + currentVelocity.x, 
-		                  currentPosition.y + currentVelocity.y));
-}
-
-void Island::_reset()
-{
-	int higherLimit = 640 - (int)(getWidth() / 2);
-	int lowerLimit = (int)(getWidth() / 2);
-	int xInitialPosition = rand() % higherLimit + 1 + lowerLimit;
-	setPosition(glm::vec2(xInitialPosition, -getHeight()));
-
+	glm::vec2 newPosition = getPosition() + getVelocity();
+	setPosition(newPosition);
 }
 
 void Island::_checkBounds()
 {
-	// checks if the object has reached the lower bounds of the screen
-	if (getPosition().y > 480.0f + getHeight()) {
+	if (getPosition().y > 480 + getHeight()) {
 		_reset();
 	}
+}
+
+void Island::_reset()
+{
+	int halfWidth = getWidth() * 0.5;
+	int xComponent = rand() % (640 - getWidth()) + halfWidth + 1;
+	int yComponent = -getHeight();
+	setPosition(glm::vec2(xComponent, yComponent));
+	setIsColliding(false);
+
 }

@@ -4,6 +4,15 @@
 
 #include <glm\vec2.hpp>
 #include <string>
+#include "SoundManager.h"
+
+
+enum GameObjectType {
+	BRICK,
+	BALL,
+	POOL,
+	NUM_OF_TYPES
+};
 
 class GameObject {
 public:
@@ -25,19 +34,21 @@ public:
 	glm::vec2 getScale();
 	glm::vec2 getVelocity();
 	glm::vec2 getAcceleration();
-	int getHeight();
 	int getWidth();
-	bool getIsColliding();
-	std::string getName();
-
+	int getHeight();
+	bool getIsCollidingX();
+	bool getIsCollidingY();
+	GameObjectType getType();
 
 	// setters for common variables
 	void setPosition(glm::vec2 newPosition);
 	void setWidth(int newWidth);
 	void setHeight(int newHeight);
 	void setVelocity(glm::vec2 newVelocity);
-	void setIsColliding(bool check);
-	void setName(std::string newName);
+	void setIsCollidingX(bool collision);
+	void setIsCollidingY(bool collision);
+	void setType(GameObjectType newType);
+
 
 private:
 	// transform variables
@@ -60,8 +71,9 @@ private:
 	std::string m_textureID;
 
 	// collision variables
-	bool m_isColliding;
-	std::string m_name;
+	bool m_isCollidingX;
+	bool m_isCollidingY;
+	GameObjectType m_type;
 };
 
 #endif

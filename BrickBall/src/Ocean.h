@@ -1,32 +1,22 @@
 #pragma once
-#ifndef __Island__
-#define __Island__
+#ifndef __OCEAN__
+#define __OCEAN__
 
 #include "GameObject.h"
 #include "TextureManager.h"
-#include "SoundManager.h"
 
-class Island : public GameObject {
+class Ocean : public GameObject {
 public:
-	Island();
-	~Island();
-
-
+	Ocean();
+	~Ocean();
 	// Inherited via GameObject
 	void draw() override;
-
 	void update() override;
-
 	void clean() override;
 private:
-
 	void _move();
-
 	void _checkBounds();
-
 	void _reset();
-	
-
 };
 
-#endif /* defined (__Island__) */
+#endif // defined (__OCEAN__)

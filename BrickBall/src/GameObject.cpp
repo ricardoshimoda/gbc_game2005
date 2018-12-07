@@ -39,24 +39,29 @@ glm::vec2 GameObject::getAcceleration()
 	return m_acceleration;
 }
 
-int GameObject::getHeight()
-{
-	return m_height;
-}
-
 int GameObject::getWidth()
 {
 	return m_width;
 }
 
-bool GameObject::getIsColliding()
+int GameObject::getHeight()
 {
-	return m_isColliding;
+	return m_height;
 }
 
-std::string GameObject::getName()
+bool GameObject::getIsCollidingX()
 {
-	return m_name;
+	return m_isCollidingX;
+}
+
+bool GameObject::getIsCollidingY()
+{
+	return m_isCollidingY;
+}
+
+GameObjectType GameObject::getType()
+{
+	return m_type;
 }
 
 void GameObject::setPosition(glm::vec2 newPosition)
@@ -79,13 +84,17 @@ void GameObject::setVelocity(glm::vec2 newVelocity)
 	m_velocity = newVelocity;
 }
 
-void GameObject::setIsColliding(bool check)
+void GameObject::setIsCollidingX(bool collision)
 {
-	m_isColliding = check;
-
+	m_isCollidingX = collision;
 }
 
-void GameObject::setName(std::string newName)
+void GameObject::setIsCollidingY(bool collision)
 {
-	m_name = newName;
+	m_isCollidingY = collision;
+}
+
+void GameObject::setType(GameObjectType newType)
+{
+	m_type = newType;
 }
