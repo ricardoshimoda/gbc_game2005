@@ -61,7 +61,7 @@ bool CollisionManager::impulse(GameObject * ball, GameObject * brick)
 {
 	int ballX = ball->getPosition().x;
 	int ballY = ball->getPosition().y;
-	int ray = ball->getHeight() >> 1; //(or width....)
+	int radius = ball->getHeight() >> 1; //(or width....)
 	glm::vec2 ballVelocity = ball->getVelocity();
 
 	int brickX = brick->getPosition().x;
@@ -76,11 +76,11 @@ bool CollisionManager::impulse(GameObject * ball, GameObject * brick)
 	 */
 	
 	if ((ballX < brickX)
-		&& (ballX + ray >= brickX - halfWidth)
+		&& (ballX + radius >= brickX - halfWidth)
 		&& (ballY > brickY - halfHeight)
 		&& (ballY < brickY + halfHeight))
 	{
-		std::cout << "Collision side left" << std::endl;
+		//std::cout << "Collision side left" << std::endl;
 		if(abs(brickVelocity.x) < 0.5 && ballVelocity.x > 0) {
 			ballVelocity.x *= -1;
 		}
@@ -91,11 +91,11 @@ bool CollisionManager::impulse(GameObject * ball, GameObject * brick)
 		TheSoundManager::Instance()->playSound("points", 0);
 	}
 	if ((ballX > brickX)
-		&& (ballX - ray <= brickX + halfWidth)
+		&& (ballX - radius <= brickX + halfWidth)
 		&& (ballY > brickY - halfHeight)
 		&& (ballY < brickY + halfHeight))
 	{
-		std::cout << "Collision side right" << std::endl;
+		//std::cout << "Collision side right" << std::endl;
 		if (abs(brickVelocity.x) < 0.5 && ballVelocity.x > 0) {
 			ballVelocity.x *= -1;
 		}
@@ -107,10 +107,10 @@ bool CollisionManager::impulse(GameObject * ball, GameObject * brick)
 		
 	}
 	if ((ballY > brickY)
-		&& (ballY - ray <= brickY + halfHeight)
+		&& (ballY - radius <= brickY + halfHeight)
 		&& (ballX > brickX - halfWidth)
 		&& (ballX < brickX + halfWidth)) {
-		std::cout << "Collision side down" << std::endl;
+		//std::cout << "Collision side down" << std::endl;
 		if (abs(brickVelocity.y) < 0.5 && ballVelocity.y < 0) {
 			ballVelocity.y *= -1;
 		}
@@ -121,7 +121,7 @@ bool CollisionManager::impulse(GameObject * ball, GameObject * brick)
 		TheSoundManager::Instance()->playSound("points", 0);
 	}
 	if ((ballY < brickY)
-		&& (ballY + ray >= brickY - halfHeight)
+		&& (ballY + radius >= brickY - halfHeight)
 		&& (ballX > brickX - halfWidth)
 		&& (ballX < brickX + halfWidth)) {
 		if (abs(brickVelocity.y) < 0.5 && ballVelocity.y > 0) {
